@@ -4,11 +4,11 @@ import os
 from dotenv import load_dotenv
 
 # 🔐 Twilio credentials 
-ACCOUNT_SID = os.getenv"TWILIO_ACCOUNT_SID"
-AUTH_TOKEN  = os.getenv"TWILIO_AUTH_TOKEN"
+ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+AUTH_TOKEN  = os.getenv("TWILIO_AUTH_TOKEN")
 
-FROM_WHATSAPP = os.getenv"TWILIO_FROM"   # Twilio sandbox
-TO_WHATSAPP   = os.getenv"TWILIO_TO" # authority number
+FROM_WHATSAPP = os.getenv("TWILIO_FROM")   # Twilio sandbox
+TO_WHATSAPP   = os.getenv("TWILIO_TO") # authority number
 
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
