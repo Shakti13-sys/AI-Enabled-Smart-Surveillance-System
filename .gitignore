@@ -1,0 +1,3 @@
+backend/.env
+backend/videos/
+*.mp4
