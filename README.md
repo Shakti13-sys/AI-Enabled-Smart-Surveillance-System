@@ -1,131 +1,198 @@
 # 🛡️ SafeGuard AI  
-### AI-Powered Real-Time Suspicious Activity Detection System  
+### AI-Powered Smart Surveillance & Suspicious Activity Detection System  
 
-## 📌 Project Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/YOLOv8-AI%20Model-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Flask-Backend-black?style=for-the-badge&logo=flask"/>
+  <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-purple?style=for-the-badge"/>
+</p>
 
-**SafeGuard AI** is an AI-powered real-time surveillance system designed to automatically detect suspicious human activities using CCTV video feeds.
-Traditional CCTV systems only record incidents for later review. SafeGuard AI transforms surveillance into an **intelligent proactive security system** capable of detecting threats instantly and triggering real-time alerts.
-The system analyzes live video streams using deep learning models and immediately notifies security personnel when suspicious activity is detected.
+## 🚀 Project Overview
+
+**SafeGuard AI** is an intelligent AI-powered surveillance system designed to automatically detect violence, harassment, and suspicious human behavior from CCTV or live video feeds in real time.
+
+Unlike traditional surveillance systems that only record footage, SafeGuard AI actively analyzes human movements using deep learning and computer vision models to detect threats instantly, send alerts to authorities via WhatsApp, and securely store incident evidence for future investigation.
 
 ## 🚨 Problem Statement
 
-Current surveillance systems suffer from:
+Traditional CCTV systems suffer from:
 
-- Passive monitoring
-- Delayed incident response
-- Human dependency for observation
-- Missed prevention opportunities
+- Passive monitoring  
+- Delayed incident response  
+- Continuous human supervision requirement  
+- Lack of real-time threat prevention  
 
-SafeGuard AI solves this by enabling **real-time automated threat detection and alerting**.
+SafeGuard AI transforms surveillance into a **proactive security system** capable of automated real-time threat detection and alerting.
 
-## ⚙️ Key Features
+## ✨ Key Features
 
-✅ Real-time CCTV video monitoring  
-✅ AI-based suspicious activity detection  
-✅ YOLOv8 pose detection model  
-✅ Instant alert triggering  
-✅ WhatsApp notification with location  
-✅ Incident logging in database  
-✅ Continuous automated monitoring  
+✅ Real-time CCTV monitoring  
+✅ AI-based human pose detection (YOLOv8)  
+✅ Suspicious behavior & following detection  
+✅ Real-time alert generation  
+✅ WhatsApp notifications using Twilio  
+✅ Live location sharing  
+✅ Automatic incident recording  
+✅ Persistent alert logging (SQLite)  
+✅ Multi-camera configurable monitoring  
+✅ REST API based video analysis  
 
 ## 🧠 Technology Stack
 
-### Backend
+### Programming Language
 - Python
-- FastAPI
-- OpenCV
-- YOLOv8 Pose Detection
-- AMD GPU Acceleration
+
+### Backend
+- Flask API
 
 ### AI / Machine Learning
+- YOLOv8 Pose Detection (Ultralytics)
 - Computer Vision
 - Deep Learning
-- Human Pose Detection
+
+### Libraries
+- OpenCV
+- Twilio API
+- python-dotenv
 
 ### Database
-- SQLite / Local Database
+- SQLite
 
-## 🏗️ Project Structure
+## 📂 Project Structure
 
+```
 SafeGuard-AI/
 │
-└── AI-Surveillance-backend/
-    │
-    ├── alert/
-    ├── database/
-    ├── detection/
-    ├── videos/
-    │
+├── README.md
+│
+└── backend/
     ├── app.py
     ├── main.py
     ├── auth.py
     ├── config.py
     ├── yolov8n-pose.pt
+    ├── .env.example
+    │
+    ├── alert/
+    │   ├── authority_alert.py
+    │   ├── sound_alert.py
+    │   └── alert.wav
+    │
+    ├── database/
+    │   ├── alerts.db
+    │   └── db.py
+    │
+    ├── detection/
+    │   ├── threat_logic.py
+    │   ├── follow_logic.py
+    │   ├── tracker.py
+    │   └── yolo_detector.py
+    │
+    └── videos/
 ```
 
-## 🚀 Installation & Setup
+## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/Shakti-sys/AI-Enabled-Smart-Surveillance-System.git
+git clone https://github.com/Shakti13-sys/AI-Enabled-Smart-Surveillance-System.git
+cd AI-Enabled-Smart-Surveillance-System
 ```
 
-### 2️⃣ Navigate to Backend
-```bash
-cd SafeGuard-AI/AI-Surveillance/backend
-```
-
-### 3️⃣ Create Virtual Environment
+### 2️⃣ Create Virtual Environment
 ```bash
 python -m venv venv
 ```
 
-### 4️⃣ Activate Environment
-
-**Windows**
+#### Windows
 ```bash
 venv\Scripts\activate
 ```
 
-**Linux / Mac**
+#### Linux / Mac
 ```bash
 source venv/bin/activate
 ```
 
-### 5️⃣ Install Dependencies
+### 3️⃣ Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install flask opencv-python ultralytics twilio python-dotenv
 ```
 
-### 6️⃣ Run Application
+### 4️⃣ Download YOLOv8 Pose Model
+
+Download **yolov8n-pose.pt** from:  
+https://github.com/ultralytics/ultralytics/releases  
+
+Place inside:
+```
+backend/
+```
+
+### 5️⃣ Environment Variables Setup
+
+Create `.env` inside **backend/**
+
+```
+TWILIO_ACCOUNT_SID=your_sid
+TWILIO_AUTH_TOKEN=your_token
+WHATSAPP_FROM=whatsapp:+14155238886
+AUTHORITY_NUMBERS=whatsapp:+91xxxxxxxxxx
+```
+
+## ▶️ Usage
+
+### Continuous Surveillance Mode
+Run monitoring for configured camera:
+
 ```bash
-python main.py
+python backend/main.py cam1
+```
+
+### API Based Video Detection
+
+Start Flask server:
+
+```bash
+python backend/app.py
+```
+
+Send detection request:
+
+```bash
+curl -X POST http://127.0.0.1:5000/detect \
+-H "Content-Type: application/json" \
+-H "X-API-KEY: ADMIN-1234" \
+-d '{"video":"sample.mp4"}'
 ```
 
 ## 🔄 System Workflow
 
-1. CCTV Live Feed Capture  
-2. Frame Extraction  
-3. YOLO AI Model Processing  
-4. Suspicious Activity Detection  
-5. Alert Trigger  
-6. WhatsApp Notification  
-7. Incident Logging  
-8. Continuous Monitoring  
+1. CCTV Feed Capture  
+2. Frame Processing  
+3. YOLOv8 Pose Detection  
+4. Behavioral Analysis  
+5. Suspicious Activity Detection  
+6. Alert Trigger  
+7. WhatsApp Notification  
+8. Incident Logging & Storage  
 
 ## 🎯 Use Cases
 
 - Smart City Surveillance  
-- Public Safety Monitoring  
+- Women Safety Monitoring  
 - Campus Security  
-- Railway Stations & Airports  
-- Shopping Malls  
-- Restricted Area Monitoring  
+- Airports & Railway Stations  
+- Public Transport Monitoring  
+- Restricted Area Security  
 
 ## 🔮 Future Enhancements
 
 - Web Dashboard Integration  
-- Multi-camera Support  
+- Multi-camera Live Monitoring  
 - Cloud Deployment  
-- Facial Recognition Integration  
-- Mobile Monitoring Application  
+- Facial Recognition  
+- Mobile Application Support  
+
+---
